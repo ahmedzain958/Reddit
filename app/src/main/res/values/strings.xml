@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Reddit</string>
+    <string name="action_settings">Settings</string>
+    <string name="login">Login</string>
+    <string name="go_to_reddit">Skip for now >>>></string>
+    <string name="Home">Home</string>
+    <string name="Popular">Popular</string>
+    <string name="hot_posts">Hot Posts</string>
+    <string name="share">Share</string>
+    <string name="new_posts">New Posts</string>
+    <string name="top_posts">Top Posts</string>
+    <string name="controversial_posts">Controversial Posts</string>
+    <string name="sortBy">Sort By</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="welcome_to_reddit">Welcome to reddit</string>
+    <string name="logout">logout</string>
+    <string name="user">Profile</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Account</string>
+    <string name="posts">Posts</string>
+    <string name="comments">Comments</string>
+    <string name="saved_posts">Saved Posts</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="AdUnitId">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ga_trackingId" translatable="false">UA-114363141-1</string>
+
+</resources>

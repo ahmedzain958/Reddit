@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/hotLinear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_item_height"
+        android:layout_margin="@dimen/viewsPadding"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/hot" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+            android:text="@string/hot_posts" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/newLinear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_item_height"
+        android:layout_margin="@dimen/viewsPadding"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/new_drawable" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+
+            android:text="@string/new_posts" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/topLinear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_item_height"
+        android:layout_margin="@dimen/viewsPadding"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/top" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+
+            android:text="@string/top_posts" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/controversialLinear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_item_height"
+        android:layout_margin="@dimen/viewsPadding"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/controversial" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+
+            android:text="@string/controversial_posts" />
+    </LinearLayout>
+</LinearLayout>
