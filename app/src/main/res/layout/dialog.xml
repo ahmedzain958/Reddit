@@ -21,6 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_weight="8"
             android:gravity="center_vertical"
             android:text="@string/hot_posts" />
@@ -45,6 +46,7 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_weight="8"
             android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
 
             android:text="@string/new_posts" />
     </LinearLayout>
@@ -68,6 +70,7 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_weight="8"
             android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
 
             android:text="@string/top_posts" />
     </LinearLayout>
@@ -91,6 +94,7 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_weight="8"
             android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
 
             android:text="@string/controversial_posts" />
     </LinearLayout>

@@ -17,6 +17,7 @@
     <dimen name="imageheight">220dp</dimen>
     <dimen name="LargetextSize">40sp</dimen>
     <dimen name="list_side_margin">64dp</dimen>
+    <dimen name="toolbar_height">100dp</dimen>
     <item name="detail_body_line_spacing_multiplier" format="float" type="fraction">1.3</item>
 
 </resources>

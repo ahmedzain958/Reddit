@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -19,17 +20,19 @@ import com.zain.reddit.util.AppApplication;
 public class HomeActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private Tracker mTracker;
-    private String TAG="tag";
+    private String TAG = "tag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        viewPager =  findViewById(R.id.viewpager);
+        Toolbar toolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+        viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
 
-        final BottomNavigationView navigation =  findViewById(R.id.navigation);
+        final BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -40,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                switch (position){
+                switch (position) {
                     case 0:
                         navigation.setSelectedItemId(R.id.navigation_home);
                         break;
@@ -76,6 +79,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     };
+
     private void setupViewPager(ViewPager viewPager) {
         BottomNavPagerAdapter adapter = new BottomNavPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new HomeFragment());
@@ -87,7 +91,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.i(TAG, "Home: " + HomeActivity.class.getName());
-        mTracker.setScreenName("Image~" +  HomeActivity.class.getName());
+        mTracker.setScreenName("Image~" + HomeActivity.class.getName());
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

@@ -36,8 +36,8 @@ public class HomeFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new UserSubredditsFragment(), "Home");
-        adapter.addFragment(new PopularFragment(), "Popular");
+        adapter.addFragment(new UserSubredditsFragment(), getResources().getString(R.string.title_home));
+        adapter.addFragment(new PopularFragment(), getResources().getString(R.string.title_popular));
         viewPager.setAdapter(adapter);
     }
 

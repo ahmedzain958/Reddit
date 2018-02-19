@@ -16,15 +16,16 @@ import com.squareup.picasso.Picasso;
 import com.zain.reddit.R;
 import com.zain.reddit.adapters.RecyclerPostCommentsAdapter;
 import com.zain.reddit.models.interfaces.IAccesTokenReady;
-import com.zain.reddit.models.post_details.PostComment;
 import com.zain.reddit.models.posts.Child;
 import com.zain.reddit.models.posts.Data_;
+import com.zain.reddit.models.post_details.PostComment;
 import com.zain.reddit.network.ApiCalling;
 import com.zain.reddit.network.RedditAPI;
 import com.zain.reddit.network.RedditRestClient;
 import com.zain.reddit.util.AppApplication;
 import com.zain.reddit.util.UserStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,6 +38,8 @@ import static com.zain.reddit.util.HelpMethods.saveRecyclerState;
 
 
 public class PostDetailActivity extends AppCompatActivity implements IAccesTokenReady {
+    private static final String CHILD = "child";
+    private static final String CHILDREN = "children";
     TextView subreddit_name_prefixed, author, domain, title;
     ImageView url;
     private Child child;
@@ -49,6 +52,7 @@ public class PostDetailActivity extends AppCompatActivity implements IAccesToken
     private AppApplication appApplication;
     private Bundle savedInstanceState;
     private AdView mAdView;
+    ArrayList<com.zain.reddit.models.post_details.Child> children;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,41 +64,54 @@ public class PostDetailActivity extends AppCompatActivity implements IAccesToken
         title = findViewById(R.id.title);
         url = findViewById(R.id.url);
         comments_recycler = findViewById(R.id.comments_recycler);
-        appApplication = AppApplication.getInstance();
-        userStatus = appApplication.getUserStatus();
-        apiCalling = new ApiCalling(this, userStatus);
-        apiCalling.setAccessToken(this);
-        runOnUiThread(new Runnable() {
-            public void run() {
-                apiCalling.getAccesToken();
+
+        if (savedInstanceState == null) {//first
+            appApplication = AppApplication.getInstance();
+            userStatus = appApplication.getUserStatus();
+            apiCalling = new ApiCalling(this, userStatus);
+            apiCalling.setAccessToken(this);
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    apiCalling.getAccesToken();
+                }
+            });
+            if (getIntent() != null) {
+                child = (Child) getIntent().getSerializableExtra(POST); //Obtaining data
             }
-        });
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            child = (Child) getIntent().getSerializableExtra(POST); //Obtaining data
-            Data_ data_ = child.getData();
-            String subredditName_prefixed = data_.getSubredditNamePrefixed();
-            String author_ = data_.getAuthor();
-            String domain_ = data_.getDomain();
-            String title_ = data_.getTitle();
-            String url_ = data_.getUrl();
-            if (subredditName_prefixed != null)
-                subreddit_name_prefixed.setText(subredditName_prefixed);
-            if (author_ != null)
-                author.setText(author_);
-            if (domain_ != null)
-                domain.setText(domain_);
-            if (title_ != null)
-                title.setText(title_);
-            if (url_ != null)
-                Picasso.with(this).load(url_).into(url);
-            subreddit = data_.getSubreddit();
-            id = data_.getId();
+        } else if (savedInstanceState != null) {
+            child = (Child) savedInstanceState.getSerializable(CHILD); //Obtaining data
+            children = savedInstanceState.getParcelableArrayList(CHILDREN); //Obtaining data
+            if (children != null)
+                fillRecyclerView(children);
         }
+        if (child != null)
+            fillData(child);
+
         this.savedInstanceState = savedInstanceState;
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
         mAdView.loadAd(adRequest);
+    }
+
+    private void fillData(Child child) {
+        Data_ data_ = child.getData();
+        String subredditName_prefixed = data_.getSubredditNamePrefixed();
+        String author_ = data_.getAuthor();
+        String domain_ = data_.getDomain();
+        String title_ = data_.getTitle();
+        String url_ = data_.getUrl();
+        if (subredditName_prefixed != null)
+            subreddit_name_prefixed.setText(subredditName_prefixed);
+        if (author_ != null)
+            author.setText(author_);
+        if (domain_ != null)
+            domain.setText(domain_);
+        if (title_ != null)
+            title.setText(title_);
+        if (url_ != null)
+            Picasso.with(this).load(url_).into(url);
+        subreddit = data_.getSubreddit();
+        id = data_.getId();
     }
 
     @Override
@@ -125,15 +142,8 @@ public class PostDetailActivity extends AppCompatActivity implements IAccesToken
                                 if (comments != null) {
                                     com.zain.reddit.models.post_details.Data data = comments.get(1).getData();
                                     if (data != null) {
-                                        List<com.zain.reddit.models.post_details.Child> children = data.getChildren();
-                                        if (children != null && children.size() > 0) {
-                                            recyclerLayoutManager = new LinearLayoutManager(PostDetailActivity.this);
-                                            comments_recycler.setLayoutManager(recyclerLayoutManager);
-                                            comments_recycler.setItemAnimator(new DefaultItemAnimator());
-                                            myRecyclerViewAdapter = new RecyclerPostCommentsAdapter(PostDetailActivity.this, children);
-                                            comments_recycler.setAdapter(myRecyclerViewAdapter);
-                                            saveRecyclerState(savedInstanceState, comments_recycler, recyclerLayoutManager);
-                                        }
+                                        children = (ArrayList<com.zain.reddit.models.post_details.Child>) data.getChildren();
+                                        fillRecyclerView(children);
                                     }
                                 }
 
@@ -158,11 +168,26 @@ public class PostDetailActivity extends AppCompatActivity implements IAccesToken
         }
     }
 
+    void fillRecyclerView(List<com.zain.reddit.models.post_details.Child> children) {
+        if (children != null && children.size() > 0) {
+            recyclerLayoutManager = new LinearLayoutManager(PostDetailActivity.this);
+            comments_recycler.setLayoutManager(recyclerLayoutManager);
+            comments_recycler.setItemAnimator(new DefaultItemAnimator());
+            myRecyclerViewAdapter = new RecyclerPostCommentsAdapter(this, children);
+            comments_recycler.setAdapter(myRecyclerViewAdapter);
+            saveRecyclerState(savedInstanceState, comments_recycler, recyclerLayoutManager);
+        }
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        if (comments_recycler.getLayoutManager() != null)
+
+        if (comments_recycler.getLayoutManager() != null) {
             outState.putParcelable(BUNDLE_RECYCLER_LAYOUT, comments_recycler.getLayoutManager().onSaveInstanceState());
+            outState.putSerializable(CHILD, child);
+            outState.putParcelableArrayList(CHILDREN, children);
+        }
+
         super.onSaveInstanceState(outState);
     }
 }

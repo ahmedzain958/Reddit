@@ -34,6 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.zain.reddit.fragments.UserSubredditsFragment.POST;
 import static com.zain.reddit.util.Constants.CONTROVERSIAL_POSTS;
 import static com.zain.reddit.util.Constants.HOT_POSTS;
 import static com.zain.reddit.util.Constants.NEW_POSTS;
@@ -217,8 +218,17 @@ public class PopularFragment extends Fragment implements IAccesTokenReady {
     }
     @Override
     public void onSaveInstanceState(Bundle outState) {
+        outState.putString(POST, sortBy);
         if (myRecyclerView.getLayoutManager() != null)
             outState.putParcelable(BUNDLE_RECYCLER_LAYOUT, myRecyclerView.getLayoutManager().onSaveInstanceState());
         super.onSaveInstanceState(outState);
+    }
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        if (savedInstanceState != null && savedInstanceState.containsKey(POST)) {
+            if (savedInstanceState.getString(POST) != null)
+                sortByTxt.setText(savedInstanceState.getString(POST));
+        }
+        super.onViewStateRestored(savedInstanceState);
     }
 }

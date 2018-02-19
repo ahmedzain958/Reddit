@@ -234,9 +234,6 @@ public class UserSubredditsFragment extends Fragment implements RecyclerPostsAda
                                 if (post != null) {
                                     savePostForWidget(getActivity(), username, accessToken);
                                     Toast.makeText(getActivity(), "Post Saved Successfully", Toast.LENGTH_SHORT).show();
-
-
-
                                 }
                             }
                         }
@@ -295,9 +292,19 @@ public class UserSubredditsFragment extends Fragment implements RecyclerPostsAda
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
+        outState.putString(POST, sortBy);
         if (myRecyclerView.getLayoutManager() != null)
             outState.putParcelable(BUNDLE_RECYCLER_LAYOUT, myRecyclerView.getLayoutManager().onSaveInstanceState());
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        if (savedInstanceState != null && savedInstanceState.containsKey(POST)) {
+            if (savedInstanceState.getString(POST) != null)
+                sortByTxt.setText(savedInstanceState.getString(POST));
+        }
+        super.onViewStateRestored(savedInstanceState);
     }
 
     @Override

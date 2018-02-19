@@ -10,7 +10,7 @@
         android:id="@+id/img_reddit"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:layout_alignParentTop="true"
+        android:contentDescription="@string/welcome_to_reddit"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/reddit" />
 

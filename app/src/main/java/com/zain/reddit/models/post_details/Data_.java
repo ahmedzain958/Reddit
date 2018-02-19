@@ -1,12 +1,15 @@
 
 package com.zain.reddit.models.post_details;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Data_ {
+public class Data_ implements Parcelable {
 
     @SerializedName("domain")
     @Expose
@@ -269,6 +272,157 @@ public class Data_ {
     @SerializedName("replies")
     @Expose
     private Object replies;
+
+    protected Data_(Parcel in) {
+        domain = in.readString();
+        subredditId = in.readString();
+        subreddit = in.readString();
+        selftextHtml = in.readString();
+        selftext = in.readString();
+        byte tmpLikes = in.readByte();
+        likes = tmpLikes == 0 ? null : tmpLikes == 1;
+        suggestedSort = in.readString();
+        byte tmpIsRedditMediaDomain = in.readByte();
+        isRedditMediaDomain = tmpIsRedditMediaDomain == 0 ? null : tmpIsRedditMediaDomain == 1;
+        id = in.readString();
+        if (in.readByte() == 0) {
+            viewCount = null;
+        } else {
+            viewCount = in.readInt();
+        }
+        byte tmpArchived = in.readByte();
+        archived = tmpArchived == 0 ? null : tmpArchived == 1;
+        byte tmpClicked = in.readByte();
+        clicked = tmpClicked == 0 ? null : tmpClicked == 1;
+        author = in.readString();
+        if (in.readByte() == 0) {
+            numCrossposts = null;
+        } else {
+            numCrossposts = in.readInt();
+        }
+        byte tmpSaved = in.readByte();
+        saved = tmpSaved == 0 ? null : tmpSaved == 1;
+        byte tmpCanModPost = in.readByte();
+        canModPost = tmpCanModPost == 0 ? null : tmpCanModPost == 1;
+        byte tmpIsCrosspostable = in.readByte();
+        isCrosspostable = tmpIsCrosspostable == 0 ? null : tmpIsCrosspostable == 1;
+        byte tmpPinned = in.readByte();
+        pinned = tmpPinned == 0 ? null : tmpPinned == 1;
+        if (in.readByte() == 0) {
+            score = null;
+        } else {
+            score = in.readInt();
+        }
+        byte tmpOver18 = in.readByte();
+        over18 = tmpOver18 == 0 ? null : tmpOver18 == 1;
+        byte tmpHidden = in.readByte();
+        hidden = tmpHidden == 0 ? null : tmpHidden == 1;
+        if (in.readByte() == 0) {
+            numComments = null;
+        } else {
+            numComments = in.readInt();
+        }
+        thumbnail = in.readString();
+        byte tmpHideScore = in.readByte();
+        hideScore = tmpHideScore == 0 ? null : tmpHideScore == 1;
+        byte tmpContestMode = in.readByte();
+        contestMode = tmpContestMode == 0 ? null : tmpContestMode == 1;
+        if (in.readByte() == 0) {
+            gilded = null;
+        } else {
+            gilded = in.readInt();
+        }
+        byte tmpLocked = in.readByte();
+        locked = tmpLocked == 0 ? null : tmpLocked == 1;
+        if (in.readByte() == 0) {
+            downs = null;
+        } else {
+            downs = in.readInt();
+        }
+        byte tmpBrandSafe = in.readByte();
+        brandSafe = tmpBrandSafe == 0 ? null : tmpBrandSafe == 1;
+        byte tmpSpam = in.readByte();
+        spam = tmpSpam == 0 ? null : tmpSpam == 1;
+        byte tmpCanGild = in.readByte();
+        canGild = tmpCanGild == 0 ? null : tmpCanGild == 1;
+        byte tmpRemoved = in.readByte();
+        removed = tmpRemoved == 0 ? null : tmpRemoved == 1;
+        byte tmpApproved = in.readByte();
+        approved = tmpApproved == 0 ? null : tmpApproved == 1;
+        name = in.readString();
+        byte tmpSpoiler = in.readByte();
+        spoiler = tmpSpoiler == 0 ? null : tmpSpoiler == 1;
+        permalink = in.readString();
+        subredditType = in.readString();
+        byte tmpStickied = in.readByte();
+        stickied = tmpStickied == 0 ? null : tmpStickied == 1;
+        if (in.readByte() == 0) {
+            created = null;
+        } else {
+            created = in.readInt();
+        }
+        url = in.readString();
+        byte tmpQuarantine = in.readByte();
+        quarantine = tmpQuarantine == 0 ? null : tmpQuarantine == 1;
+        title = in.readString();
+        if (in.readByte() == 0) {
+            createdUtc = null;
+        } else {
+            createdUtc = in.readInt();
+        }
+        subredditNamePrefixed = in.readString();
+        upvoteRatio = in.readDouble();
+        byte tmpIgnoreReports = in.readByte();
+        ignoreReports = tmpIgnoreReports == 0 ? null : tmpIgnoreReports == 1;
+        byte tmpIsSelf = in.readByte();
+        isSelf = tmpIsSelf == 0 ? null : tmpIsSelf == 1;
+        byte tmpVisited = in.readByte();
+        visited = tmpVisited == 0 ? null : tmpVisited == 1;
+        if (in.readByte() == 0) {
+            numReports = null;
+        } else {
+            numReports = in.readInt();
+        }
+        byte tmpIsVideo = in.readByte();
+        isVideo = tmpIsVideo == 0 ? null : tmpIsVideo == 1;
+        if (in.readByte() == 0) {
+            ups = null;
+        } else {
+            ups = in.readInt();
+        }
+        linkId = in.readString();
+        parentId = in.readString();
+        body = in.readString();
+        byte tmpCollapsed = in.readByte();
+        collapsed = tmpCollapsed == 0 ? null : tmpCollapsed == 1;
+        byte tmpIsSubmitter = in.readByte();
+        isSubmitter = tmpIsSubmitter == 0 ? null : tmpIsSubmitter == 1;
+        bodyHtml = in.readString();
+        byte tmpScoreHidden = in.readByte();
+        scoreHidden = tmpScoreHidden == 0 ? null : tmpScoreHidden == 1;
+        if (in.readByte() == 0) {
+            controversiality = null;
+        } else {
+            controversiality = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            depth = null;
+        } else {
+            depth = in.readInt();
+        }
+    }
+
+    public static final Creator<Data_> CREATOR = new Creator<Data_>() {
+        @Override
+        public Data_ createFromParcel(Parcel in) {
+            return new Data_(in);
+        }
+
+        @Override
+        public Data_[] newArray(int size) {
+            return new Data_[size];
+        }
+    };
 
     public String getDomain() {
         return domain;
@@ -966,4 +1120,132 @@ public class Data_ {
         this.replies = replies;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(domain);
+        dest.writeString(subredditId);
+        dest.writeString(subreddit);
+        dest.writeString(selftextHtml);
+        dest.writeString(selftext);
+        dest.writeByte((byte) (likes == null ? 0 : likes ? 1 : 2));
+        dest.writeString(suggestedSort);
+        dest.writeByte((byte) (isRedditMediaDomain == null ? 0 : isRedditMediaDomain ? 1 : 2));
+        dest.writeString(id);
+        if (viewCount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(viewCount);
+        }
+        dest.writeByte((byte) (archived == null ? 0 : archived ? 1 : 2));
+        dest.writeByte((byte) (clicked == null ? 0 : clicked ? 1 : 2));
+        dest.writeString(author);
+        if (numCrossposts == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(numCrossposts);
+        }
+        dest.writeByte((byte) (saved == null ? 0 : saved ? 1 : 2));
+        dest.writeByte((byte) (canModPost == null ? 0 : canModPost ? 1 : 2));
+        dest.writeByte((byte) (isCrosspostable == null ? 0 : isCrosspostable ? 1 : 2));
+        dest.writeByte((byte) (pinned == null ? 0 : pinned ? 1 : 2));
+        if (score == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(score);
+        }
+        dest.writeByte((byte) (over18 == null ? 0 : over18 ? 1 : 2));
+        dest.writeByte((byte) (hidden == null ? 0 : hidden ? 1 : 2));
+        if (numComments == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(numComments);
+        }
+        dest.writeString(thumbnail);
+        dest.writeByte((byte) (hideScore == null ? 0 : hideScore ? 1 : 2));
+        dest.writeByte((byte) (contestMode == null ? 0 : contestMode ? 1 : 2));
+        if (gilded == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(gilded);
+        }
+        dest.writeByte((byte) (locked == null ? 0 : locked ? 1 : 2));
+        if (downs == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(downs);
+        }
+        dest.writeByte((byte) (brandSafe == null ? 0 : brandSafe ? 1 : 2));
+        dest.writeByte((byte) (spam == null ? 0 : spam ? 1 : 2));
+        dest.writeByte((byte) (canGild == null ? 0 : canGild ? 1 : 2));
+        dest.writeByte((byte) (removed == null ? 0 : removed ? 1 : 2));
+        dest.writeByte((byte) (approved == null ? 0 : approved ? 1 : 2));
+        dest.writeString(name);
+        dest.writeByte((byte) (spoiler == null ? 0 : spoiler ? 1 : 2));
+        dest.writeString(permalink);
+        dest.writeString(subredditType);
+        dest.writeByte((byte) (stickied == null ? 0 : stickied ? 1 : 2));
+        if (created == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(created);
+        }
+        dest.writeString(url);
+        dest.writeByte((byte) (quarantine == null ? 0 : quarantine ? 1 : 2));
+        dest.writeString(title);
+        if (createdUtc == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(createdUtc);
+        }
+        dest.writeString(subredditNamePrefixed);
+        dest.writeDouble(upvoteRatio);
+        dest.writeByte((byte) (ignoreReports == null ? 0 : ignoreReports ? 1 : 2));
+        dest.writeByte((byte) (isSelf == null ? 0 : isSelf ? 1 : 2));
+        dest.writeByte((byte) (visited == null ? 0 : visited ? 1 : 2));
+        if (numReports == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(numReports);
+        }
+        dest.writeByte((byte) (isVideo == null ? 0 : isVideo ? 1 : 2));
+        if (ups == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(ups);
+        }
+        dest.writeString(linkId);
+        dest.writeString(parentId);
+        dest.writeString(body);
+        dest.writeByte((byte) (collapsed == null ? 0 : collapsed ? 1 : 2));
+        dest.writeByte((byte) (isSubmitter == null ? 0 : isSubmitter ? 1 : 2));
+        dest.writeString(bodyHtml);
+        dest.writeByte((byte) (scoreHidden == null ? 0 : scoreHidden ? 1 : 2));
+        if (controversiality == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(controversiality);
+        }
+        if (depth == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(depth);
+        }
+    }
 }
