@@ -17,7 +17,7 @@
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-
+android:contentDescription="@string/reddit_user"
             android:layout_marginBottom="@dimen/fab_margin"
             android:layout_marginTop="@dimen/fab_margin"
             android:background="@color/colorPrimary"

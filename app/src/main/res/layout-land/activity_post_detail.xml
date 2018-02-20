@@ -26,6 +26,7 @@
                 <ImageView
                     android:layout_width="@dimen/icon_img_width"
                     android:layout_height="match_parent"
+                    android:contentDescription="@string/subreddit_icon"
                     android:src="@drawable/ic_launcher_background" />
 
                 <LinearLayout
@@ -94,6 +95,7 @@
         android:id="@+id/url"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:contentDescription="@string/post_photo"
         android:scaleType="centerCrop" />
 
     <LinearLayout

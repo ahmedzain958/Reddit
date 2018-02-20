@@ -27,5 +27,6 @@
     <string name="subreddit_icon">Subreddit Photo</string>
     <string name="post_photo">Post Image</string>
     <string name="title_popular">Popular</string>
+    <string name="reddit_user">Reddit USER</string>
 
 </resources>
